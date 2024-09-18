@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="dynamic(main)">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <link rel="stylesheet" th:href="@{|/assets/css/shopping-cart-app.css|}">
+</head>
+<body class="container" ng-app="shopping-cart-app" ng-controller="shopping-cart-controller">
+    <!-- Header -->
+    <header class="row bg-primary text-white py-3">
+        <h1 class="text-center">My Website</h1>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="row">
+        <div class="col-12">
+            <div th:replace="/layout/Menu :: menu"></div> 
+        </div>
+    </nav>
+
+    <!-- Main Content and Sidebar -->
+    <div class="row mt-4">
+        <!-- Article (Main content) -->
+        <article class="col-sm-9">
+            <div class="card">
+                <div class="card-body">
+                    <div th:replace="${main}"></div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Sidebar (Cart and Categories) -->
+        <aside class="col-sm-3">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div th:replace="/layout/Cart_Info :: cart"></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div th:replace="/layout/Category :: category"></div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer class="row bg-dark text-white py-3 mt-4">
+        <p class="text-center">Em Truong </p>
+    </footer>
+    <script src="/assets/JS/Shopping-cart-app.js"></script>
+</body>
+</html>

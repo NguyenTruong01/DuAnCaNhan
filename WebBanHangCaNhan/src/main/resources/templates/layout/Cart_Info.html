@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div th:fragment="cart">
+    <div class="panel panel-primary">
+        <div class="panel-body text-center">
+            <i class="glyphicon glyphicon-shopping-cart icon-red" ></i>
+            <a th:href="@{/cart/view}">{{cart.count}} Sản Phẩm x ${{cart.amount | number:2}} </a>
+        </div>
+    </div>
+  </div>
+</body>
+</html>

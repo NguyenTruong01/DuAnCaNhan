@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div th:fragment="category">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <b class="glyphicon glyphicon-briefcase"></b>Danh muc
+        </div>
+        <div class="list-group">
+          <a th:each="c:${cates}" th:href="@{|/product/lst?cid=${c.Id}|}" class="list-group-item"> [[${c.Name}]]</a>
+
+        </div>
+      </div>
+    
+  </div>
+</body>
+</html>
