@@ -4,10 +4,10 @@
  */
 package com.example.WebBanHangCaNhan.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 /**
  *
@@ -23,56 +23,80 @@ public class Accounts {
     private String Email;
     private String Photo;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "accounts")
+    List<Orders> orders;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "accounts", fetch = FetchType.EAGER)
+    List<Authorities> authorities;
+
     public Accounts() {
     }
 
-    public Accounts(String Username, String Password, String Fullname, String Email, String Photo) {
-        this.Username = Username;
-        this.Password = Password;
-        this.Fullname = Fullname;
-        this.Email = Email;
-        this.Photo = Photo;
+    public Accounts(List<Authorities> authorities, String email, String fullname, List<Orders> orders, String password, String photo, String username) {
+        this.authorities = authorities;
+        Email = email;
+        Fullname = fullname;
+        this.orders = orders;
+        Password = password;
+        Photo = photo;
+        Username = username;
     }
 
-    public String getUsername() {
-        return Username;
+    public List<Authorities> getAuthorities() {
+        return authorities;
     }
 
-    public void setUsername(String Username) {
-        this.Username = Username;
-    }
-
-    public String getPassword() {
-        return Password;
-    }
-
-    public void setPassword(String Password) {
-        this.Password = Password;
-    }
-
-    public String getFullname() {
-        return Fullname;
-    }
-
-    public void setFullname(String Fullname) {
-        this.Fullname = Fullname;
+    public void setAuthorities(List<Authorities> authorities) {
+        this.authorities = authorities;
     }
 
     public String getEmail() {
         return Email;
     }
 
-    public void setEmail(String Email) {
-        this.Email = Email;
+    public void setEmail(String email) {
+        Email = email;
+    }
+
+    public String getFullname() {
+        return Fullname;
+    }
+
+    public void setFullname(String fullname) {
+        Fullname = fullname;
+    }
+
+    public List<Orders> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Orders> orders) {
+        this.orders = orders;
+    }
+
+    public String getPassword() {
+        return Password;
+    }
+
+    public void setPassword(String password) {
+        Password = password;
     }
 
     public String getPhoto() {
         return Photo;
     }
 
-    public void setPhoto(String Photo) {
-        this.Photo = Photo;
+    public void setPhoto(String photo) {
+        Photo = photo;
     }
-    
-    
+
+    public String getUsername() {
+        return Username;
+    }
+
+    public void setUsername(String username) {
+        Username = username;
+    }
 }

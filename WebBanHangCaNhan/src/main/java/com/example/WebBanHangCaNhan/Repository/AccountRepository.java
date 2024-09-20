@@ -3,11 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.example.WebBanHangCaNhan.Repository;
+import com.example.WebBanHangCaNhan.Model.Accounts;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author truon
  */
-public class AccountRepository {
-    
+@Repository
+public interface AccountRepository extends JpaRepository<Accounts , String> {
+
 }

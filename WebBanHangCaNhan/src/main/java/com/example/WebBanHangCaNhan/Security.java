@@ -15,7 +15,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @author truon
  */
 @Configuration
-public class Config implements WebMvcConfigurer{
+public class Security implements WebMvcConfigurer{
     @Autowired
     GlobalInterceptor globalInterceptor;
 
@@ -23,7 +23,7 @@ public class Config implements WebMvcConfigurer{
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(globalInterceptor)
                 .addPathPatterns("/**")
-//                .excludePathPatterns("/rest/**","/admin/**","/assets/**")
+                .excludePathPatterns("/rest/**","/admin/**","/assets/**")
         ;
     }
 }

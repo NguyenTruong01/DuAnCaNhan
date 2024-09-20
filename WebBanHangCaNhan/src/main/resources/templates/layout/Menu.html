@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,20 +23,33 @@
             <li class="active">
               <a th:href="@{/product/lst}">Home</a>
             </li>
+            <th:block sec:authorize="isAuthenticated()">
+
             <li>
-              <a href="#">Dang Nhap</a>
-            </li>
-            <li>
-              <a href="#">Dang Xuat</a>
+              <a th:href="@{/security/logoff}">Dang Xuat</a>
             </li>
             <li>
               <a th:href="@{/order/lst}">San Pham Cua Ban</a>
             </li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li>
-              <a href="#">WebSiteName</a>
+            <li sec:authorize="hasRole('STAF') or hasRole('DIRE')">
+              <a th:href="@{/admin/home}">Admin Panel</a>
             </li>
+            </th:block>
+            <th:block>
+              <th:block sec:authorize="!isAuthenticated()">
+                <li>
+                  <a th:href="@{/security/login/form}">Dang Nhap</a>
+                </li>
+            </th:block>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <th:block sec:authorize="isAuthenticated()">
+              <li>
+                <a href="#">Hello [[${#authentication.getPrincipal().username}]]</a>
+              </li>
+            </th:block>
+
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->

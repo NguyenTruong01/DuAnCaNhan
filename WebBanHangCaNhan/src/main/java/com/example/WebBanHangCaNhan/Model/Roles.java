@@ -4,10 +4,10 @@
  */
 package com.example.WebBanHangCaNhan.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 /**
  *
@@ -20,29 +20,39 @@ public class Roles {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String Id;
     private String Name;
-
+    @JsonIgnore
+    @OneToMany(mappedBy = "roles")
+    List<Authorities> authorities;
     public Roles() {
     }
 
-    public Roles(String Id, String Name) {
-        this.Id = Id;
-        this.Name = Name;
+    public Roles(List<Authorities> authorities, String id, String name) {
+        this.authorities = authorities;
+        Id = id;
+        Name = name;
+    }
+
+    public List<Authorities> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(List<Authorities> authorities) {
+        this.authorities = authorities;
     }
 
     public String getId() {
         return Id;
     }
 
-    public void setId(String Id) {
-        this.Id = Id;
+    public void setId(String id) {
+        Id = id;
     }
 
     public String getName() {
         return Name;
     }
 
-    public void setName(String Name) {
-        this.Name = Name;
+    public void setName(String name) {
+        Name = name;
     }
-    
 }
