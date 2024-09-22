@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
 <body>
     <main th:fragment="main"> 
-       <div class="panel panel-primary">
+       <div class="panel panel-primary" th:fragment="shoppingcart">
            <div class="panel-heading"> Giỏ hàng của bạn </div>
            <table class="table table-striped table-bordered">
                <thead class="thead-light">

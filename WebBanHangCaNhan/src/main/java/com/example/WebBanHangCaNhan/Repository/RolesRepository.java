@@ -4,10 +4,15 @@
  */
 package com.example.WebBanHangCaNhan.Repository;
 
+import com.example.WebBanHangCaNhan.Model.Roles;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
 /**
  *
  * @author truon
  */
-public class RolesRepository {
+@Repository
+public interface RolesRepository extends JpaRepository<Roles, String> {
     
 }

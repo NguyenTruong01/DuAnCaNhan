@@ -4,10 +4,15 @@
  */
 package com.example.WebBanHangCaNhan.Repository;
 
+import com.example.WebBanHangCaNhan.Model.Authorities;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
 /**
  *
  * @author truon
  */
-public class AuthoritiesRepository {
+@Repository
+public interface AuthoritiesRepository extends JpaRepository<Authorities, Long> {
     
 }

@@ -4,10 +4,15 @@
  */
 package com.example.WebBanHangCaNhan.Repository;
 
+import com.example.WebBanHangCaNhan.Model.OrderDetails;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
 /**
  *
  * @author truon
  */
-public class OrderDetailRepository {
+@Repository
+public interface OrderDetailRepository extends JpaRepository<OrderDetails,Long> {
     
 }

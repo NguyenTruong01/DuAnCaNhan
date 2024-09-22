@@ -1,8 +1,34 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+>
 <body>
-    <main > 
-        <div>Danh sach san pham</div> 
-    </main>
+<main>
+<div class="panel panel-primary">
+    <div class="panel-heading"> YOUR ORDERS PURCHASED</div>
+    <table class="table">
+        <tr>
+            <td>No.</td>
+            <td>Order No.</td>
+            <td>Order Date</td>
+            <td>Shipping Address</td>
+            <td></td>
+        </tr>
+        <tbody>
+        <tr th:each="order,stare:${orders}">
+            <td th:text="${stare.index}"></td>
+            <td th:text="${order.id}"></td>
+            <td th:text="${order.createDate}"></td>
+            <td th:text="${order.address}"></td>
+            <td>
+                <a th:href="@{|/order/detail/${order.id}|}" class="btn btn-default">
+                    <b class="glyphicon glyphicon-search"></b>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</main>>
 </body>
 </html>

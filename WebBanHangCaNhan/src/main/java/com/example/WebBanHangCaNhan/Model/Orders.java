@@ -4,69 +4,42 @@
  */
 package com.example.WebBanHangCaNhan.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 /**
  *
  * @author truon
  */
+@Data
 @Entity
-public class Orders {
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+public class Orders implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    @JsonProperty("Id")
+    Long id;
+    @JsonProperty("Address")
+    String address;
+    @JsonProperty("CreateDate")
+    @Column(name = "CreateDate")
+    Date createDate;
     @ManyToOne
+    @JsonProperty("Accounts")
     @JoinColumn(name = "Username")
-    private Accounts accounts;
-    private Date CreateDate;
-    private String Address;
+    Accounts accounts;
 
-    public Orders() {
-    }
+    @JsonIgnore
+    @OneToMany(mappedBy = "order")
+    List<OrderDetails> orderDetails;
 
-    public Orders(Long Id, Accounts accounts, Date CreateDate, String Address) {
-        this.Id = Id;
-        this.accounts = accounts;
-        this.CreateDate = CreateDate;
-        this.Address = Address;
-    }
-
-    public Long getId() {
-        return Id;
-    }
-
-    public void setId(Long Id) {
-        this.Id = Id;
-    }
-
-    public Accounts getAccounts() {
-        return accounts;
-    }
-
-    public void setAccounts(Accounts accounts) {
-        this.accounts = accounts;
-    }
-
-    public Date getCreateDate() {
-        return CreateDate;
-    }
-
-    public void setCreateDate(Date CreateDate) {
-        this.CreateDate = CreateDate;
-    }
-
-    public String getAddress() {
-        return Address;
-    }
-
-    public void setAddress(String Address) {
-        this.Address = Address;
-    }
-    
 }

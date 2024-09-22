@@ -45,4 +45,30 @@ app.controller("shopping-cart-controller",function ($scope,$http){
 
     }
     $scope.cart.loadFormLocalStorage();
+    $scope.order={
+        CreateDate: new Date(),
+        Address:"",
+        Accounts: { Username: $("#username").text().replace(/\s+/g, ' ').trim()},
+        get orderDetails(){
+            return $scope.cart.items.map(item =>{
+                return {
+                    product:{id: item.id},
+                    price: item.price,
+                    quantity: item.qty
+                }
+            } );
+        },
+        purchase(){
+           var order = angular.copy(this);
+           $http.post("/rest/orders",order).then(resp =>{
+               alert("Đặt hàng thành công");
+               $scope.cart.clear();
+               location.href="/order/detail/" + resp.data.Id;
+           }).catch(error => {
+               alert("Đặt hàng lỗi")
+               console.log(order)
+               // console.log(error)
+           })
+        }
+    }
 })

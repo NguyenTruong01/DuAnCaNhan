@@ -4,10 +4,19 @@
  */
 package com.example.WebBanHangCaNhan.Repository;
 
+import com.example.WebBanHangCaNhan.Model.Orders;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
 /**
  *
  * @author truon
  */
-public class OrderRepository {
-    
+@Repository
+public interface OrderRepository extends JpaRepository<Orders, Long> {
+    @Query("select o FROM Orders o WHERE o.accounts.username =?1")
+    List<Orders> findByUserName(String username);
 }
