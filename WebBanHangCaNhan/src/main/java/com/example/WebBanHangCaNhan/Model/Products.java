@@ -33,7 +33,7 @@ public class Products implements Serializable {
     private Long id;
     @JsonProperty("Name")
     private String name;
-    @JsonProperty("Image")
+//    @JsonProperty("Image")
     private String image;
     @JsonProperty("Price")
     private Double price;

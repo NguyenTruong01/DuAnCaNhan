@@ -23,4 +23,13 @@ public class ProductService {
     public List<Products> findByCateId(Long cid) {  // Sửa kiểu trả về thành List<Products> và kiểu tham số thành Long
         return productRepository.findByCateId(cid);
     }
+    public Products save(Products products) {
+        return productRepository.save(products);
+    }
+    public Products update(Products products) {
+        return productRepository.save(products);
+    }
+    public void delete(Long Id) {
+         productRepository.deleteById(Id);
+    }
 }
